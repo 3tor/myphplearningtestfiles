@@ -37,4 +37,27 @@
 	}
 
 	$tasks = fetchAllTasks($pdo);
+
+?>
+
+
+
+
+<?php
+//new and better way of making a database connection string
+class Connection
+
+{
+	public static function make()
+	{
+		try {
+				return new PDO('mysql:host=127.0.0.1;dbname=mydb', 'root', '');
+			} catch (PDOException $e) {
+				// die('Could not connect');
+				die($e->getMessage()); //give a description of the error
+			}
+	}
+}
+
+	$pdo = Connection::make();
 ?>
